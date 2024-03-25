@@ -42,31 +42,31 @@
                 <h3>User can add and edit here</h3>
             </div>
             <div class="table-form">
-                <Form @submit.prevent="saveData()">
+                <form @submit.prevent="saveData()">
                     <div class="cont">
                         <div class="inputs">
                             <label>Firstname <span class="errormsg">*</span></label>
-                            <Field type="text" v-model="employee.Firstname" name="Firstname" :rules="isRequired" placeholder="Firstname" />
-                            <ErrorMessage name="Firstname" class="errormsg" />
+                            <input type="text" v-model="employee.Firstname" name="Firstname" placeholder="Firstname" />
+                            <!-- <ErrorMessage name="Firstname" class="errormsg" /> -->
                         </div>
                         <div class="inputs">
                             <label>Lastname <span class="errormsg">*</span></label>
-                            <Field type="text" v-model="employee.Lastname" name="Lastname" :rules="isRequired" placeholder="Lastname"/>
-                            <ErrorMessage name="Lastname" class="errormsg" />
+                            <input type="text" v-model="employee.Lastname" name="Lastname" placeholder="Lastname"/>
+                            <!-- <ErrorMessage name="Lastname" class="errormsg" /> -->
                         </div>
                         <div class="inputs">
                             <label>Email <span class="errormsg">*</span></label>
-                            <Field type="email" v-model="employee.Email" name="Email" :rules="validateEmail" placeholder="Email"/>
-                            <ErrorMessage name="Email" class="errormsg" />
+                            <input type="email" v-model="employee.Email" name="Email"  placeholder="Email"/>
+                            <!-- <ErrorMessage name="Email" class="errormsg" /> -->
                         </div>
                         <div class="inputs">
                             <label>Country <span class="errormsg">*</span></label>
-                            <Field type="text" v-model="employee.Country" name="Country" :rules="isRequired"  placeholder="Country"/>
-                            <ErrorMessage name="Country" class="errormsg" />
+                            <input type="text" v-model="employee.Country" name="Country"  placeholder="Country"/>
+                            <!-- <ErrorMessage name="Country" class="errormsg" /> -->
                         </div>
                     </div>
                     <button type="submit" class="btn btn-success w-100">Save</button> 
-                </Form>
+                </form>
             </div>
         </div>
     </div>
@@ -101,13 +101,13 @@ export default {
 
 
 <script>
-import { Form, Field, ErrorMessage } from 'vee-validate';
+// import { Form, Field, ErrorMessage } from 'vee-validate';
 export default {
-    components: {
-        Form,
-        Field,
-        ErrorMessage
-    },
+    // components: {
+    //     Form,
+    //     Field,
+    //     ErrorMessage
+    // },
     data(){
         return{
             'employee': {
@@ -124,35 +124,35 @@ export default {
             axios.post('/employee/create', this.employee).then(
                 response => {
                     console.log(response);
-                    this.$toast.success(`Success!!! You have successfully add the data`, {
-                        position: "top-right",
-                        duration: 3000,
-                    });
+                    // this.$toast.success(`Success!!! You have successfully add the data`, {
+                    //     position: "top-right",
+                    //     duration: 3000,
+                    // });
                 }
             ).catch(error => {
                 console.log(error);
-                this.$toast.error(`Something went wrong...`, {
-                    position: "top-right",
-                    duration: 3000,
-                });
+                // this.$toast.error(`Something went wrong...`, {
+                //     position: "top-right",
+                //     duration: 3000,
+                // });
             })
         },
-        isRequired(value){
-            if (value && value.trim()) {
-                return true;
-            }
-            return 'This is required';
-        },
-        validateEmail(value) {
-            if (!value) {
-                return 'This field is required';
-            }
-            const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-            if (!regex.test(value)) {
-                return 'This field must be a valid email';
-            }
-            return true;
-        },
+        // isRequired(value){
+        //     if (value && value.trim()) {
+        //         return true;
+        //     }
+        //     return 'This is required';
+        // },
+        // validateEmail(value) {
+        //     if (!value) {
+        //         return 'This field is required';
+        //     }
+        //     const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+        //     if (!regex.test(value)) {
+        //         return 'This field must be a valid email';
+        //     }
+        //     return true;
+        // },
     },
     mounted() {
         console.log("Component mounted.");
