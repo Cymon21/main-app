@@ -20,5 +20,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\EmployeeController::class, 'index'])->name('home');
-Route::post('/employee/create', [EmployeeController::class, 'store']);
+Route::any('{any}', function(){
+    return view('home');
+});
+
+Route::get('/home', [EmployeeController::class, 'index'])->name('home');
+//functionalities
+Route::post('employee/create', [EmployeeController::class, 'store']);
+Route::get('employee/fetch', [EmployeeController::class, 'fetch']);
+Route::put('employee/{id}', [EmployeeController::class, 'update']);
+Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
